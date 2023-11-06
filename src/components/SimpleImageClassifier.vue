@@ -25,14 +25,15 @@ export default {
       reader.onload = (e) => {
         this.imageUrl = e.target.result;
       };
-      fetch("/data.json")
-      .then((response) => response.json())
-      .then((data) => {
-        const labels = data.labels;
-        const prediction = Math.random() < 0.5 ? "cat" : "dog"
-        this.result = labels[prediction]
-      });
+      fetch("/labels.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const labels = data.labels;
+          const prediction = Math.random() < 0.5 ? "cat" : "dog";
+          this.result = labels[prediction];
+
+        });
     },
-  },
+  }, 
 };
 </script>
