@@ -1,0 +1,5 @@
+Currently working on unit testing of Simple Image Classifier in a Vue app. Current trying to resolve an error relating
+to the classification part of with it with fetch to determine if the picture is 50/50 dog or cat. Current error message
+is ReferenceError: fetch is not defined on line 28 in the SimpleImageClassifier.vue application. Spent a couple hours Monday
+resolving it but was not working in the original repo as part of a testing environment. Will continue to find a solution
+through looking around and asking Bard and ChatGPT for assistance. 
