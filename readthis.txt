@@ -1,5 +1,9 @@
-Error with fetch seems to be resolved, used axios instead of fetch. That seems to work now but
-unit test doesn't seem to like it all that much. The new error in unit testing is
-SyntaxError: Cannot use import statement outside a module. Will/have been looking
-into this one as well. Error with fetch was resolved with googling around and
-with assistance from Bard and ChatGPT
+The error saying SyntaxError: Cannot use import statement outside a module
+seems to have been resolved by adding transformIgnorePatterns and transform
+to the package.json under jest. This seems to have worked and is now showing
+the unit test results by saying something about toBe on lines 24 and 15 on
+the unit test portion. This is the case because the code itself is a 
+Math.random function of 50/50 and flips back and forth between cat and dog
+labels even when its not a cat or dog. Will see if I can improve
+the code if needed so as to have a successful unit test even if the code
+itself is a proof of concept.
