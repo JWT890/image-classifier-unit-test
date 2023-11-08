@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import SimpleImageClassifier from '@/components/SimpleImageClassifier.vue';
 
-describe('ImageClassifier', () => {
+describe('SimpleImageClassifier', () => {
   it('should render the input element', () => {
     const wrapper = mount(SimpleImageClassifier);
     expect(wrapper.find('input[type="file"]').exists()).toBe(true);
