@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -25,13 +26,12 @@ export default {
       reader.onload = (e) => {
         this.imageUrl = e.target.result;
       };
-      fetch("/labels.json")
-        .then((response) => response.json())
-        .then((data) => {
+      axios.get('/data.json')
+        .then((response) => {
+          const data = response.data;
           const labels = data.labels;
           const prediction = Math.random() < 0.5 ? "cat" : "dog";
           this.result = labels[prediction];
-
         });
     },
   }, 
