@@ -12,7 +12,7 @@ describe('SimpleImageClassifier', () => {
     const file = new File([''], 'image.jpg', { type: 'image/jpeg' });
     const event = { target: { files: [file] } };
     await wrapper.vm.classifyImage(event);
-    expect(wrapper.find('img').exists()).toBe(true);
+    expect(wrapper.find('img').exists()).toBeTruthy();
     expect(wrapper.find('img').attributes('src')).toContain('image.jpg');
   });
 
@@ -21,7 +21,7 @@ describe('SimpleImageClassifier', () => {
     const file = new File([''], 'image.jpg', { type: 'image/jpeg' });
     const event = { target: { files: [file] } };
     await wrapper.vm.classifyImage(event);
-    expect(wrapper.find('p').exists()).toBe(true);
+    expect(wrapper.find('p').exists()).toBeTruthy();
     expect(wrapper.find('p').text()).toContain('cat' || 'dog');
   });
 });
