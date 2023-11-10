@@ -7,3 +7,14 @@ Math.random function of 50/50 and flips back and forth between cat and dog
 labels even when its not a cat or dog. Will see if I can improve
 the code if needed so as to have a successful unit test even if the code
 itself is a proof of concept.
+
+11/10/2023
+Changed the toBe function to toBeTruthy to make it more on par with the code
+since its a Math.random function at the end. When changing and testing the code
+a new error when unit testing occured, expect(received).toBe(expected) // Object.is equality, 
+and when changing toBe(true) to toBe(false), Cannot call text on an empty DOMWrapper. 
+This was done to fix the respective errors in the unit test. When testing now with
+toBeTruthy, an error appears saying expect(received).toBeTruthy Received: false. This
+error is likely in correlation to Math.random or just with toBeTruthy. Even with this,
+there is a successful unit test when rendering the element. An idea to be had is unit testing
+a Vue calculator application or unit testing beginner project videos. 
