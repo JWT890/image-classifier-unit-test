@@ -18,3 +18,8 @@ toBeTruthy, an error appears saying expect(received).toBeTruthy Received: false.
 error is likely in correlation to Math.random or just with toBeTruthy. Even with this,
 there is a successful unit test when rendering the element. An idea to be had is unit testing
 a Vue calculator application or unit testing beginner project videos. 
+
+11/15/2023
+With Codium I was able to make the unit test more successful than the previous
+with assistance from Bard and ChatGPT. Probably might be using Codium from here
+instead of Bard with assistance in unit testing
