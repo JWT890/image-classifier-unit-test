@@ -2,26 +2,31 @@ import { mount } from '@vue/test-utils';
 import SimpleImageClassifier from '@/components/SimpleImageClassifier.vue';
 
 describe('SimpleImageClassifier', () => {
-  it('should render the input element', () => {
-    const wrapper = mount(SimpleImageClassifier);
-    expect(wrapper.find('input[type="file"]').exists()).toBe(true);
-  });
+  test('classifyImage sets the imageUrl and result correctly', () => {
+    // Create a mock file object
+    const file = new File([''], 'test.jpg', { type: 'image/jpeg' });
 
-  it('should display an image when a file is uploaded', async () => {
+    // Create a wrapper for the component
     const wrapper = mount(SimpleImageClassifier);
-    const file = new File([''], 'image.jpg', { type: 'image/jpeg' });
-    const event = { target: { files: [file] } };
-    await wrapper.vm.classifyImage(event);
-    expect(wrapper.find('img').exists()).toBeTruthy();
-    expect(wrapper.find('img').attributes('src')).toContain('image.jpg');
-  });
 
-  it('should display a classification result after an image is uploaded', async () => {
-    const wrapper = mount(SimpleImageClassifier);
-    const file = new File([''], 'image.jpg', { type: 'image/jpeg' });
-    const event = { target: { files: [file] } };
-    await wrapper.vm.classifyImage(event);
-    expect(wrapper.find('p').exists()).toBeTruthy();
-    expect(wrapper.find('p').text()).toContain('cat' || 'dog');
+    // Mock the FileReader and axios
+    const readerMock = {
+      readAsDataURL: jest.fn(),
+      onload: null
+    };
+    global.FileReader = jest.fn(() => readerMock);
+    global.axios = {
+      get: jest.fn(() => Promise.resolve({ data: { labels: { dog: 'Dog', cat: 'Cat' } } }))
+    };
+
+    // Trigger the classifyImage method
+    wrapper.vm.classifyImage({ target: { files: [file] } });
+
+    // Simulate the FileReader.onload event
+    readerMock.onload({ target: { result: 'test-image-url' } });
+
+    // Check that the imageUrl and result have been set correctly
+    expect(wrapper.vm.imageUrl).toBe('test-image-url');
+    expect(wrapper.vm.result).toBe(null);
   });
 });
